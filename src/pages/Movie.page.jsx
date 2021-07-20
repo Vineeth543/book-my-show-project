@@ -1,7 +1,12 @@
 import React from "react";
+import MovieHero from "../components/MovieHero/MovieHero.component";
 
 const Movie = () => {
-  return <div></div>;
+  return (
+    <>
+      <MovieHero />
+    </>
+  );
 };
 
 export default Movie;
