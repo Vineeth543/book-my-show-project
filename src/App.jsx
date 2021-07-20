@@ -1,8 +1,7 @@
 import { Route } from "react-router-dom";
-import Navbar from "./components/Navbar/navbar.component";
-import Temp from "./components/Temp";
 import DefaultHOC from "./HOC/Default.HOC";
 
+import Temp from "./components/Temp";
 
 function App() {
   return (
