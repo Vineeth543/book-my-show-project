@@ -1,11 +1,5 @@
 import { Disclosure } from "@headlessui/react";
-import {
-  BiSearch,
-  BiMenu,
-  BiChevronDown,
-  BiChevronUp,
-  BiShareAlt,
-} from "react-icons/bi";
+import { BiChevronDown, BiChevronUp } from "react-icons/bi";
 
 const PlaysFilter = (props) => {
   return (

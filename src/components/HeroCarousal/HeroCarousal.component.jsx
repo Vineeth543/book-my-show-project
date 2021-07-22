@@ -1,10 +1,21 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import HeroSlider from "react-slick";
+import axios from "axios";
 
 // Component
 import { NextArrow, PrevArrow } from "./Arrows.component";
 
 const HeroCarousal = () => {
+  const [images, setImages] = useState([]);
+
+  useEffect(() => {
+    const requstnowplaying = async () => {
+      const getImages = await axios.get("/movie/now_playing");
+      setImages(getImages.data.results);
+    };
+    requstnowplaying();
+  }, []);
+
   const settingsLG = {
     arrows: true,
     autoplay: true,
@@ -27,22 +38,17 @@ const HeroCarousal = () => {
     prevArrow: <PrevArrow />,
   };
 
-  const images = [
-    "https://in.bmscdn.com/content-buzz/2021/02/buzz-stream-01.jpg",
-    "https://assets.mspimages.in/wp-content/uploads/2021/02/EtcKZdLUUAExdSF-696x365.jpg",
-    "https://in.bmscdn.com/nmcms/events/banner/desktop/media-desktop-sea-wall-3-2021-3-11-t-19-25-57.jpg",
-    "https://pbmobi.payback.in/content/dam/payback/home/herobanner/Godzilla-Kingkong_banner_767x412.webp/jcr:content/renditions/original",
-    "https://pbs.twimg.com/media/DtEOqhxVYAAqrxg.jpg",
-    "https://www.marketingmind.in/wp-content/uploads/2019/03/BookMySHow.jpg",
-  ];
-
   return (
     <>
       <div className="lg:hidden">
         <HeroSlider {...settings}>
           {images.map((image) => (
             <div className="w-full h-56 md:h-80 py-3">
-              <img src={image} alt="testing" className="w-full h-full" />
+              <img
+                src={`https://image.tmdb.org/t/p/original${image.backdrop_path}`}
+                alt="testing"
+                className="w-full h-full"
+              />
             </div>
           ))}
         </HeroSlider>
@@ -50,9 +56,9 @@ const HeroCarousal = () => {
       <div className="hidden lg:block">
         <HeroSlider {...settingsLG}>
           {images.map((image) => (
-            <div className="w-full h-96 px-2 py-3">
+            <div className="w-full h-auto px-2 py-3">
               <img
-                src={image}
+                src={`https://image.tmdb.org/t/p/original${image.backdrop_path}`}
                 alt="testing"
                 className="w-full h-full rounded-md"
               />

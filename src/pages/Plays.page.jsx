@@ -64,6 +64,60 @@ const Plays = () => {
                   title="Crazy Thieves in Palavakkam"
                 />
               </div>
+              <div className="w-1/2 md:w-1/3 lg:w-3/12 my-3">
+                <Poster
+                  src="https://in.bmscdn.com/discovery-catalog/events/tr:w-400,h-600,bg-CCCCCC:w-400.0,h-660.0,cm-pad_resize,bg-000000,fo-top:ote-U2F0LCAzMSBKdWw%3D,ots-29,otc-FFFFFF,oy-612,ox-24/et00312831-ulxltxlwjn-portrait.jpg"
+                  title="Admission - 31st July (Saturday)"
+                />
+              </div>
+              <div className="w-1/2 md:w-1/3 lg:w-3/12 my-3">
+                <Poster
+                  src="https://in.bmscdn.com/discovery-catalog/events/tr:w-400,h-600,bg-CCCCCC:w-400.0,h-660.0,cm-pad_resize,bg-000000,fo-top:ote-VGh1LCAyMiBKdWw%3D,ots-29,otc-FFFFFF,oy-612,ox-24/et00309176-acvpbmcyev-portrait.jpg"
+                  title="`Sri Venkateswara Udbhavam` Surabhi Theatre Play"
+                />
+              </div>
+              <div className="w-1/2 md:w-1/3 lg:w-3/12 my-3">
+                <Poster
+                  src="https://in.bmscdn.com/discovery-catalog/events/tr:w-400,h-600,bg-CCCCCC:w-400.0,h-660.0,cm-pad_resize,bg-000000,fo-top:ote-U3VuLCAyNSBKdWw%3D,ots-29,otc-FFFFFF,oy-612,ox-24/et00311043-krdlmqnaev-portrait.jpg"
+                  title="Ellamae Thamash Than"
+                />
+              </div>
+              <div className="w-1/2 md:w-1/3 lg:w-3/12 my-3">
+                <Poster
+                  src="https://in.bmscdn.com/discovery-catalog/events/tr:w-400,h-600,bg-CCCCCC:w-400.0,h-660.0,cm-pad_resize,bg-000000,fo-top:ote-U2F0LCAyNCBKdWw%3D,ots-29,otc-FFFFFF,oy-612,ox-24/et00311719-mqxdbttkdc-portrait.jpg"
+                  title="TVK Presents Amarar Kalki in Sivagamiyin Sabatham"
+                />
+              </div>
+              <div className="w-1/2 md:w-1/3 lg:w-3/12 my-3">
+                <Poster
+                  src="https://in.bmscdn.com/discovery-catalog/events/tr:w-400,h-600,bg-CCCCCC:w-400.0,h-660.0,cm-pad_resize,bg-000000,fo-top:ote-VGh1LCAyMiBKdWw%3D,ots-29,otc-FFFFFF,oy-612,ox-24/et00309050-fsgpqjlfhw-portrait.jpg"
+                  title="`BHAKTHA PRAHLADA` Surabhi Theatre Play"
+                />
+              </div>
+              <div className="w-1/2 md:w-1/3 lg:w-3/12 my-3">
+                <Poster
+                  src="https://in.bmscdn.com/discovery-catalog/events/tr:w-400,h-600,bg-CCCCCC:w-400.0,h-660.0,cm-pad_resize,bg-000000,fo-top:ote-U2F0LCAzMSBKdWw%3D,ots-29,otc-FFFFFF,oy-612,ox-24/et00312471-fxjdfruzje-portrait.jpg"
+                  title="Tvk Cultural presents Ponniyin Selvan"
+                />
+              </div>
+              <div className="w-1/2 md:w-1/3 lg:w-3/12 my-3">
+                <Poster
+                  src="https://in.bmscdn.com/discovery-catalog/events/tr:w-400,h-600,bg-CCCCCC:w-400.0,h-660.0,cm-pad_resize,bg-000000,fo-top:ote-VGh1LCAyMiBKdWw%3D,ots-29,otc-FFFFFF,oy-612,ox-24/et00309124-kfppeantkb-portrait.jpg"
+                  title="`JAI PATHALA BHAIRAVI` Surabhi Theatre Play"
+                />
+              </div>
+              <div className="w-1/2 md:w-1/3 lg:w-3/12 my-3">
+                <Poster
+                  src="https://in.bmscdn.com/discovery-catalog/events/tr:w-400,h-600,bg-CCCCCC:w-400.0,h-660.0,cm-pad_resize,bg-000000,fo-top:ote-VGh1LCAyMiBKdWw%3D,ots-29,otc-FFFFFF,oy-612,ox-24/et00309034-uvbesymhzf-portrait.jpg"
+                  title="`BALANAGAMMA` Surabhi Theatre Play"
+                />
+              </div>
+              <div className="w-1/2 md:w-1/3 lg:w-3/12 my-3">
+                <Poster
+                  src="https://in.bmscdn.com/discovery-catalog/events/tr:w-400,h-600,bg-CCCCCC:w-400.0,h-660.0,cm-pad_resize,bg-000000,fo-top:ote-U2F0LCAzMSBKdWw%3D,ots-29,otc-FFFFFF,oy-612,ox-24/et00311987-grtmzzwwnt-portrait.jpg"
+                  title="Crazy Thieves in Palavakkam"
+                />
+              </div>
             </div>
           </div>
           <div className="lg:w-3/12">
