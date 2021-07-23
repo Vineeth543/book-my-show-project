@@ -6,7 +6,7 @@ import { MovieContext } from "../context/Movie.context";
 
 const Movielayout = (props) => {
   const { id } = useParams();
-  const { movie, setMovie } = useContext(MovieContext);
+  const { setMovie } = useContext(MovieContext);
 
   useEffect(() => {
     const requestMovie = async () => {
@@ -14,7 +14,7 @@ const Movielayout = (props) => {
       setMovie(getMovieData.data);
     };
     requestMovie();
-  }, [id]);
+  }, [id, setMovie]);
 
   return (
     <>
