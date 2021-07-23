@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useState, useEffect } from "react";
 
 import {
   NextArrow,
@@ -10,8 +10,42 @@ import PosterSlider from "../components/PosterSlide/PosterSlider.component";
 import TempPosters from "../config/TempPosters.config";
 import MovieHero from "../components/MovieHero/MovieHero.component";
 import Cast from "../components/Cast/Cast.component";
+import { MovieContext } from "../context/Movie.context";
+import axios from "axios";
+import { useParams } from "react-router-dom";
+import Slider from "react-slick";
 
 const Movie = () => {
+  const { id } = useParams();
+  const { movie } = useContext(MovieContext);
+  const [cast, setCast] = useState([]);
+  const [similarMovies, setSimilarMovies] = useState([]);
+  const [recommendedMovies, setRecommendedMovies] = useState([]);
+
+  useEffect(() => {
+    const requestCast = async () => {
+      const getCast = await axios.get(`/movie/${id}/credits`);
+      setCast(getCast.data.cast);
+    };
+    requestCast();
+  }, [id]);
+
+  useEffect(() => {
+    const requstSimilarMovies = async () => {
+      const getSimilarMovies = await axios.get(`/movie/${id}/similar`);
+      setSimilarMovies(getSimilarMovies.data.results);
+    };
+    requstSimilarMovies();
+  }, [id]);
+
+  useEffect(() => {
+    const requstRecommendedMovies = async () => {
+      const getRecommendedMovies = await axios.get(`/movie/${id}/recommendations`);
+      setRecommendedMovies(getRecommendedMovies.data.results);
+    };
+    requstRecommendedMovies();
+  }, [id]);
+
   const settings = {
     autoplay: false,
     Infinity: false,
@@ -47,17 +81,48 @@ const Movie = () => {
     ],
   };
 
+  const settingsCast = {
+    autoplay: false,
+    Infinity: false,
+    slidesToShow: 6,
+    slidesToScroll: 4,
+    InitialSlide: 0,
+    nextArrow: <NextArrow />,
+    prevArrow: <PrevArrow />,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          infinite: true,
+          slidesToShow: 4,
+          slidesToScroll: 3,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 5,
+          slidesToScroll: 1,
+          InitialSlide: 1,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        },
+      },
+    ],
+  };
+
   return (
     <>
       <MovieHero />
       <div className="my-12 container px-4 lg:w-2/3 lg:ml-48">
         <div className="flex flex-col items-start gap-3">
           <h2 className="text-gray-800 font-bold text-2xl">About the movie</h2>
-          <p>
-            Bruce Wayne and Diana Prince try to bring the metahumans of Earth
-            together after the death of Clark Kent. Meanwhile, Darkseid sends
-            Steppenwolf to Earth with an army to subjugate humans.
-          </p>
+          <p>{movie.overview}</p>
         </div>
 
         <div className="my-10">
@@ -112,49 +177,16 @@ const Movie = () => {
 
         <div className="my-10">
           <h2 className="text-gray-800 font-bold text-2xl mb-4">Cast & Crew</h2>
-          <div className="flex flex-wrap gap-5 lg:gap-10">
-            <Cast
-              image="https://in.bmscdn.com/iedb/artist/images/website/poster/large/henry-cavill-23964-04-05-2020-04-25-14.jpg"
-              castName="Henry Cavil"
-              role="Superman"
-            />
-            <Cast
-              image="https://in.bmscdn.com/iedb/artist/images/website/poster/large/ben-affleck-292-12-09-2017-05-12-16.jpg"
-              castName="Henry Cavil"
-              role="Superman"
-            />
-            <Cast
-              image="https://in.bmscdn.com/iedb/artist/images/website/poster/large/gal-gadot-11088-17-10-2017-11-45-36.jpg"
-              castName="Henry Cavil"
-              role="Superman"
-            />
-            <Cast
-              image="https://in.bmscdn.com/iedb/artist/images/website/poster/large/ray-fisher-1072729-17-10-2017-12-14-18.jpg"
-              castName="Henry Cavil"
-              role="Superman"
-            />
-            <Cast
-              image="https://in.bmscdn.com/iedb/artist/images/website/poster/large/willem-dafoe-2526-24-03-2017-12-35-57.jpg"
-              castName="Henry Cavil"
-              role="Superman"
-            />
-            <Cast
-              image="https://in.bmscdn.com/iedb/artist/images/website/poster/large/jason-momoa-25617-24-03-2017-17-39-52.jpg"
-              castName="Henry Cavil"
-              role="Superman"
-            />
-            <Cast
-              image="https://in.bmscdn.com/iedb/artist/images/website/poster/large/ezra-miller-34889-24-03-2017-16-04-22.jpg"
-              castName="Henry Cavil"
-              role="Superman"
-            />
-            <Cast
-              image="https://in.bmscdn.com/iedb/artist/images/website/poster/large/jared-leto-3943-24-03-2017-17-30-08.jpg"
-              castName="Henry Cavil"
-              role="Superman"
-            />
+            <Slider {...settingsCast}>
+              {cast.map((castData) => (
+                <Cast
+                  image={`https://image.tmdb.org/t/p/original${castData.profile_path}`}
+                  castName={castData.original_name}
+                  role={castData.character}
+                />
+              ))}
+            </Slider>
           </div>
-        </div>
 
         <div className="my-10">
           <hr />
@@ -163,7 +195,7 @@ const Movie = () => {
         <div className="my-10">
           <PosterSlider
             config={settings}
-            images={TempPosters}
+            images={similarMovies}
             title="You might also like"
             isDark={false}
           />
@@ -176,7 +208,7 @@ const Movie = () => {
         <div className="my-10">
           <PosterSlider
             config={settings}
-            images={TempPosters}
+            images={recommendedMovies}
             title="BMS XCLUSIV"
             isDark={false}
           />
