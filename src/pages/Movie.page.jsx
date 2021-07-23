@@ -7,7 +7,6 @@ import {
 
 // Component
 import PosterSlider from "../components/PosterSlide/PosterSlider.component";
-import TempPosters from "../config/TempPosters.config";
 import MovieHero from "../components/MovieHero/MovieHero.component";
 import Cast from "../components/Cast/Cast.component";
 import { MovieContext } from "../context/Movie.context";

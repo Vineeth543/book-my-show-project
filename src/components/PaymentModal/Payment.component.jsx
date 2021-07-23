@@ -1,33 +1,37 @@
-import { Dialog, Transition } from '@headlessui/react'
-import { Fragment, useState } from 'react'
+import { Dialog, Transition } from "@headlessui/react";
+import { Fragment } from "react";
 
-export default function MyModal() {
-  let [isOpen, setIsOpen] = useState(true)
-
+export default function PaymentModal({ isOpen, setIsOpen, price }) {
   function closeModal() {
-    setIsOpen(false)
+    setIsOpen(false);
   }
 
-  function openModal() {
-    setIsOpen(true)
-  }
+  const launchRazorPay = () => {
+    let options = {
+      key: "rzp_test_3lT4wvAjvpTCBs",
+      amount: price * 100,
+      currency: "INR",
+      name: "Book My Show Clone",
+      description: "Movie Purchace or Rental Amount",
+      image:
+        "https://i.ibb.co/zPBYW3H/imgbin-bookmyshow-office-android-ticket-png.png",
+      handler: () => {
+        setIsOpen(false);
+        alert("Payment Successful.");
+      },
+      theme: { color: "#c4242d" },
+    };
+
+    let RazorPay = new window.Razorpay(options);
+    RazorPay.open();
+  };
 
   return (
     <>
-      <div className="fixed inset-0 flex items-center justify-center">
-        <button
-          type="button"
-          onClick={openModal}
-          className="px-4 py-2 text-sm font-medium text-white bg-black rounded-md bg-opacity-20 hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
-        >
-          Open dialog
-        </button>
-      </div>
-
       <Transition appear show={isOpen} as={Fragment}>
         <Dialog
           as="div"
-          className="fixed inset-0 z-10 overflow-y-auto"
+          className="fixed inset-0 z-10 overflow-y-auto z-50"
           onClose={closeModal}
         >
           <div className="min-h-screen px-4 text-center">
@@ -64,22 +68,28 @@ export default function MyModal() {
                   as="h3"
                   className="text-lg font-medium leading-6 text-gray-900"
                 >
-                  Payment successful
+                  Please Make Your Payment Here
                 </Dialog.Title>
                 <div className="mt-2">
                   <p className="text-sm text-gray-500">
-                    Your payment has been successfully submitted. We’ve sent
-                    your an email with all of the details of your order.
+                    Click the below button to proceed for the payment.
                   </p>
                 </div>
 
-                <div className="mt-4">
+                <div className="w-full mt-4">
                   <button
                     type="button"
-                    className="inline-flex justify-center px-4 py-2 text-sm font-medium text-blue-900 bg-blue-100 border border-transparent rounded-md hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
+                    className="w-full inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-red-600 border border-transparent rounded-md hover:bg-red-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-red-500"
+                    onClick={launchRazorPay}
+                  >
+                    Pay ₹{price}
+                  </button>
+                  <button
+                    type="button"
+                    className="mt-5 w-full inline-flex justify-center px-4 py-2 text-sm font-medium text-red-700 hover:bg-red-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-red-500"
                     onClick={closeModal}
                   >
-                    Got it, thanks!
+                    Cancel Payment
                   </button>
                 </div>
               </div>
@@ -88,5 +98,5 @@ export default function MyModal() {
         </Dialog>
       </Transition>
     </>
-  )
+  );
 }
