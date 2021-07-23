@@ -63,14 +63,14 @@ const HomePage = () => {
       <div className="container mx-auto px-4 my-10">
         <PosterSlider
           images={topRatedMovies}
-          title="Online Streaming Events"
+          title="Now Streaming"
           isDark={false}
         />
       </div>
       <div className="container mx-auto px-4 my-10">
         <PosterSlider
           images={upcomingMovies}
-          title="Outdoor Events"
+          title="Upcoming Movies"
           isDark={false}
         />
       </div>

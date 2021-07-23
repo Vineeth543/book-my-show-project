@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
+import { MovieContext } from "../../context/Movie.context";
 
 export const MovieInfo = () => {
+  const { movie } = useContext(MovieContext);
+  const genres = movie.genres?.map(({ name }) => name).join(", "); // Optinal Chaining Method
   return (
     <div className="flex flex-col gap-3 lg:gap-10">
       <div className="flex items-center gap-3 md:px-4">
@@ -16,19 +19,20 @@ export const MovieInfo = () => {
         </span>
       </div>
       <h1 className="hidden lg:block text-white font-bold lg:text-5xl lg:px-4">
-        Zack Snyder`s Justice League
+        {movie.original_title}
       </h1>
       <div className="flex flex-col-reverse gap-3 lg:flex-col lg:gap-10">
         <div className="text-white flex flex-col gap-2 md:px-4 lg:gap-8">
-          <h4 className="font-light">
-            English &bull; Lnaguages:{" "}
-            <span className="font-semibold" style={{ color: "red" }}>
-              Audio(1),Subtitle(1)
+          <h4 className="font-semibold text-xl">2D , 4DX , MX4D , IMAX 2D , IMAX 3D </h4>
+          <h4 className="font-semibold text-xl">
+            Languages:{" "}
+            <span className="font-bold text-xl" style={{ color: "red" }}>
+              {movie.original_language}
             </span>
           </h4>
-          <h4>
-            4h 1m &bull; Action, Adventure, Fantasy &bull; 16+ &bull; 18 Mar,
-            2021
+          <h4 className="font-semibold text-xl">
+            {(movie.runtime / 60).toFixed(2)} h &bull; {genres} &bull; 16+
+            &bull; 18 Mar, 2021
           </h4>
         </div>
         <div className="flex items-center gap-3 md:w-screen md:px-4 lg:w-full">
